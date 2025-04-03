@@ -1,39 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const Header: React.FC = () => {
-  useEffect(() => {
-    const themeToggle = document.querySelector(".theme-toggle");
-    if (!themeToggle) return; // Verifica se o botão existe
+  const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false);
 
+  useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
     const systemPrefersDark = window.matchMedia(
       "(prefers-color-scheme: dark)"
     ).matches;
-
-    const isDarkTheme =
-      savedTheme === "dark" || (!savedTheme && systemPrefersDark);
-
-    document.body.classList.toggle("dark-theme", isDarkTheme);
-
-    // Garantir que o ícone seja atualizado corretamente
-    const icon = themeToggle.querySelector("i");
-    if (icon) {
-      icon.className = isDarkTheme ? "fa-solid fa-sun" : "fa-solid fa-moon";
-    }
+    const theme = savedTheme === "dark" || (!savedTheme && systemPrefersDark);
+    setIsDarkTheme(theme);
+    document.body.classList.toggle("dark-theme", theme);
   }, []);
 
-  // Função para alternar entre os temas
   const toggleTheme = () => {
-    const themeToggle = document.querySelector(".theme-toggle");
-    if (!themeToggle) return; // Verifica se o botão existe
-
-    const isDarkTheme = document.body.classList.toggle("dark-theme");
-    localStorage.setItem("theme", isDarkTheme ? "dark" : "light");
-
-    const icon = themeToggle.querySelector("i");
-    if (icon) {
-      icon.className = isDarkTheme ? "fa-solid fa-sun" : "fa-solid fa-moon";
-    }
+    const newTheme = !isDarkTheme;
+    setIsDarkTheme(newTheme);
+    document.body.classList.toggle("dark-theme", newTheme);
+    localStorage.setItem("theme", newTheme ? "dark" : "light");
   };
 
   return (
@@ -45,7 +29,7 @@ const Header: React.FC = () => {
         <h1>Gerador de imagens de IA</h1>
       </div>
       <button className="theme-toggle" onClick={toggleTheme}>
-        <i className="fa-solid fa-moon"></i>
+        <i className={`fa-solid ${isDarkTheme ? "fa-sun" : "fa-moon"}`}></i>
       </button>
     </header>
   );
