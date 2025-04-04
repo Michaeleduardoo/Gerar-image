@@ -37,7 +37,7 @@ const App: React.FC = () => {
   const [aspectRatio, setAspectRatio] = useState("1/1");
   const [promptText, setPromptText] = useState("");
   const [gallery, setGallery] = useState<string[]>([]);
-  const [loadingCount, setLoadingCount] = useState<number>(0);
+  const [, setLoadingCount] = useState<number>(0);
 
   const promptInputRef = useRef<HTMLTextAreaElement>(null);
   const promptBtnRef = useRef<HTMLButtonElement>(null);
