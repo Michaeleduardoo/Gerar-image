@@ -2,8 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Header from "./Header/page";
 import PromptForm from "./PromptForm/page";
 import Gallery from "./Gallery/page";
-
-const API_KEY = "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";
+const API_KEY = "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"; // Hugging Face API Key
 
 const examplePrompts: string[] = [
   "Um estádio de futebol lotado, com torcedores vibrando e fogos de artifício no céu",
