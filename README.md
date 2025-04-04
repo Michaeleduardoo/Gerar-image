@@ -79,3 +79,9 @@ Para que o gerador de imagens funcione corretamente, é necessário possuir uma 
 - Adicona aqui 👉 const API_KEY = "API Key";
 
 ---
+
+## ▶️ Teste Agora
+
+- Faça o download do código, configure sua API da Hugging Face e teste localmente o gerador de imagens com IA!
+
+
