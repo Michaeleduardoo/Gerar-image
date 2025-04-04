@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Header from "./Header/page";
 import PromptForm from "./PromptForm/page";
 import Gallery from "./Gallery/page";
-const API_KEY = "API Key"; // Hugging Face API Key
+const API_KEY = process.env.VITE_HUGGINGFACE_API_KEY;
 
 const allMessage: string[] = [
   "Um estádio de futebol lotado, com torcedores vibrando e fogos de artifício no céu",
