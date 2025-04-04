@@ -1,25 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-const Header: React.FC = () => {
-  const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false);
+interface HeaderProps {
+  theme: string;
+  toggleTheme: () => void;
+}
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    const systemPrefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-    const theme = savedTheme === "dark" || (!savedTheme && systemPrefersDark);
-    setIsDarkTheme(theme);
-    document.body.classList.toggle("dark-theme", theme);
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = !isDarkTheme;
-    setIsDarkTheme(newTheme);
-    document.body.classList.toggle("dark-theme", newTheme);
-    localStorage.setItem("theme", newTheme ? "dark" : "light");
-  };
-
+const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
   return (
     <header className="header">
       <div className="logo-wrapper">
@@ -29,7 +15,9 @@ const Header: React.FC = () => {
         <h1>Gerador de imagens de IA</h1>
       </div>
       <button className="theme-toggle" onClick={toggleTheme}>
-        <i className={`fa-solid ${isDarkTheme ? "fa-sun" : "fa-moon"}`}></i>
+        <i
+          className={`fa-solid ${theme === "dark" ? "fa-sun" : "fa-moon"}`}
+        ></i>
       </button>
     </header>
   );

@@ -1,4 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
+import Header from "./Header/page";
+import PromptForm from "./PromptForm/page";
+import Gallery from "./Gallery/page";
 
 const API_KEY = "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";
 
@@ -133,140 +136,20 @@ const App: React.FC = () => {
 
   return (
     <div className="container">
-      <header className="header">
-        <div className="logo-wrapper">
-          <div className="logo">
-            <i className="fa-solid fa-wand-magic-sparkles"></i>
-          </div>
-          <h1>Gerador de imagens de IA</h1>
-        </div>
-        <button className="theme-toggle" onClick={toggleTheme}>
-          <i
-            className={`fa-solid ${theme === "dark" ? "fa-sun" : "fa-moon"}`}
-          ></i>
-        </button>
-      </header>
+      <Header theme={theme} toggleTheme={toggleTheme} />
       <div className="main-content">
-        <form onSubmit={handleSubmit} className="prompt-form">
-          <div className="prompt-container">
-            <textarea
-              ref={promptInputRef}
-              className="prompt-input"
-              placeholder="Descreva sua imaginação em detalhes..."
-              spellCheck={false}
-              required
-              value={promptText}
-              onChange={(e) => setPromptText(e.target.value)}
-            ></textarea>
-            <button
-              type="button"
-              className="prompt-btn"
-              title="Get Random Prompt"
-              ref={promptBtnRef}
-              onClick={handleRandomPrompt}
-            >
-              <i className="fa-solid fa-dice"></i>
-            </button>
-          </div>
-          <div className="prompt-actions">
-            <div className="select-wrapper">
-              <select
-                className="custom-select"
-                required
-                onChange={(e) => setSelectedModel(e.target.value)}
-              >
-                <option value="" disabled selected>
-                  Select Model
-                </option>
-                <option value="black-forest-labs/FLUX.1-dev">FLUX.1-dev</option>
-                <option value="black-forest-labs/FLUX.1-schnell">
-                  FLUX.1-schnell
-                </option>
-                <option value="stabilityai/stable-diffusion-xl-base-1.0">
-                  Stable Diffusion XL
-                </option>
-                <option value="runwayml/stable-diffusion-v1-5">
-                  Stable Diffusion v1.5
-                </option>
-                <option value="stabilityai/stable-diffusion-3-medium-diffusers">
-                  Stable Diffusion 3
-                </option>
-              </select>
-            </div>
-            <div className="select-wrapper">
-              <select
-                className="custom-select"
-                required
-                onChange={(e) => setImageCount(Number(e.target.value))}
-              >
-                <option value="" disabled selected>
-                  Image Count
-                </option>
-                <option value="1">1 Image</option>
-                <option value="2">2 Images</option>
-                <option value="3">3 Images</option>
-                <option value="4">4 Images</option>
-              </select>
-            </div>
-            <div className="select-wrapper">
-              <select
-                className="custom-select"
-                required
-                onChange={(e) => setAspectRatio(e.target.value)}
-              >
-                <option value="" disabled selected>
-                  Aspect Ratio
-                </option>
-                <option value="1/1">Square (1:1)</option>
-                <option value="16/9">Landscape (16:9)</option>
-                <option value="9/16">Portrait (9:16)</option>
-              </select>
-            </div>
-            <button type="submit" className="generate-btn">
-              <i className="fa-solid fa-wand-sparkles"></i> Generate
-            </button>
-          </div>
-        </form>
-        <div className="gallery-grid">
-          {gallery.map((img, index) => (
-            <div
-              className={`img-card ${
-                img === "loading" ? "loading" : img === "error" ? "error" : ""
-              } animate-in`}
-              key={index}
-              style={{ aspectRatio }}
-            >
-              {img === "loading" ? (
-                <div className="status-container">
-                  <div className="spinner"></div>
-                  <i className="fa-solid fa-triangle-exclamation"></i>
-                  <p className="status-text">Generating...</p>
-                </div>
-              ) : img === "error" ? (
-                <div className="status-container">
-                  <i className="fa-solid fa-triangle-exclamation"></i>
-                  <p className="status-text">
-                    Generation failed! Check console.
-                  </p>
-                </div>
-              ) : (
-                <>
-                  <img className="result-img" src={img} alt="Generated" />
-                  <div className="img-overlay">
-                    <a
-                      href={img}
-                      className="img-download-btn"
-                      title="Download Image"
-                      download
-                    >
-                      <i className="fa-solid fa-download"></i>
-                    </a>
-                  </div>
-                </>
-              )}
-            </div>
-          ))}
-        </div>
+        <PromptForm
+          promptText={promptText}
+          setPromptText={setPromptText}
+          setSelectedModel={setSelectedModel}
+          setImageCount={setImageCount}
+          setAspectRatio={setAspectRatio}
+          handleSubmit={handleSubmit}
+          handleRandomPrompt={handleRandomPrompt}
+          promptInputRef={promptInputRef}
+          promptBtnRef={promptBtnRef}
+        />
+        <Gallery gallery={gallery} aspectRatio={aspectRatio} />
       </div>
     </div>
   );
