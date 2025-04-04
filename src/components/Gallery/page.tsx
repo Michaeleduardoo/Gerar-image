@@ -19,7 +19,7 @@ const Gallery: React.FC<GalleryProps> = ({ gallery, aspectRatio }) => {
           {img === "loading" ? (
             <div className="status-container">
               <div className="spinner"></div>
-              <p className="status-text">Generating...</p>
+              <p className="status-text">Gerando... </p>
             </div>
           ) : img === "error" ? (
             <div className="status-container">
