@@ -139,7 +139,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="container">
+    <>
       <Header theme={theme} toggleTheme={toggleTheme} />
       <div className="main-content">
         <PromptForm
@@ -155,7 +155,7 @@ const App: React.FC = () => {
         />
         <Gallery gallery={gallery} aspectRatio={aspectRatio} />
       </div>
-    </div>
+    </>
   );
 };
 
