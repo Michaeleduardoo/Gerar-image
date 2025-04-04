@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const API_KEY = "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";
+const API_KEY = "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";
 
 const examplePrompts: string[] = [
   "Um estádio de futebol lotado, com torcedores vibrando e fogos de artifício no céu",
