@@ -4,7 +4,7 @@ import PromptForm from "./PromptForm/page";
 import Gallery from "./Gallery/page";
 const API_KEY = "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"; // Hugging Face API Key
 
-const examplePrompts: string[] = [
+const allMessage: string[] = [
   "Um estádio de futebol lotado, com torcedores vibrando e fogos de artifício no céu",
   "Um aquário gigante com tubarões e raias nadando",
   "Um jogo de tabuleiro mágico onde as peças se movem sozinhas",
@@ -114,7 +114,7 @@ const App: React.FC = () => {
 
   const handleRandomPrompt = () => {
     const prompt =
-      examplePrompts[Math.floor(Math.random() * examplePrompts.length)].trim();
+      allMessage[Math.floor(Math.random() * allMessage.length)].trim();
     if (promptInputRef.current && promptBtnRef.current) {
       let i = 0;
       let currentText = "";
