@@ -77,7 +77,7 @@ const PromptForm: React.FC<PromptFormProps> = ({
             onChange={(e) => setImageCount(Number(e.target.value))}
           >
             <option value="" disabled selected>
-              imagens
+              Imagens
             </option>
             <option value="1">1 imagem</option>
             <option value="2">2 Imagens</option>
