@@ -24,7 +24,7 @@ const Gallery: React.FC<GalleryProps> = ({ gallery, aspectRatio }) => {
           ) : img === "error" ? (
             <div className="status-container">
               <i className="fa-solid fa-triangle-exclamation"></i>
-              <p className="status-text">Generation failed! Check console.</p>
+              <p className="status-text">Não foi possível gerar a imagem.</p>
             </div>
           ) : (
             <>

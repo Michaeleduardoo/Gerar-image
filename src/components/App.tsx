@@ -115,15 +115,19 @@ const App: React.FC = () => {
 
   const handleRandomPrompt = () => {
     const prompt =
-      examplePrompts[Math.floor(Math.random() * examplePrompts.length)];
-    setPromptText("");
+      examplePrompts[Math.floor(Math.random() * examplePrompts.length)].trim();
     if (promptInputRef.current && promptBtnRef.current) {
       let i = 0;
+      let currentText = "";
       promptBtnRef.current.disabled = true;
       promptBtnRef.current.style.opacity = "0.5";
+
+      setPromptText(""); // limpa antes de iniciar
+
       const typeInterval = setInterval(() => {
         if (i < prompt.length) {
-          setPromptText((prev) => prev + prompt.charAt(i));
+          currentText += prompt.charAt(i);
+          setPromptText(currentText);
           i++;
         } else {
           clearInterval(typeInterval);

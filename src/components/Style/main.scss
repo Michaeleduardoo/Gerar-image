@@ -11,6 +11,7 @@
   --color-accent: #20b2aa;
   --color-card: #ffffff;
   --color-input: #20b2ab39;
+  --color-option: #20b2ab39;
   --color-text: #000;
   --color-placeholder: #000;
   --color-border: #d4d4ed;
@@ -18,8 +19,8 @@
 }
 body.dark-theme {
   --color-card: #0000007d;
-  --color-text: #000;
   --color-input: rgba(0, 0, 0, 0.358);
+  --color-option: #000;
   --color-text: #f3f4f6;
   --color-placeholder: #f3f4f6;
   --color-border: none;
@@ -200,6 +201,11 @@ body.dark-theme .container {
 .prompt-actions .custom-select:is(:focus, :hover) {
   border-color: var(--color-accent);
 }
+
+option {
+  background: var(--color-option);
+}
+
 .prompt-actions .generate-btn {
   display: flex;
   gap: 12px;
